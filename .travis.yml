@@ -8,5 +8,13 @@ branches:
 
 xcode_project: JSONUtilities.xcodeproj
 xcode_scheme: JSONUtilities
-xcode_destination: platform=iOS Simulator,OS=12.0,name=iPhone X
+
+matrix:
+  include:
+  - name: "iPhone Test"
+    swift: "4.2"
+    env: PLATFORM=iOS DESTINATION=platform=iOS Simulator,OS=12.0,name=iPhone X
+
+script: 
+xcode_destination: $DESTINATION
 
