@@ -1,37 +1,12 @@
-os:
-  - osx
-language: generic
+language: swift
+os: osx
 osx_image: xcode10
-xcode_sdk: iphonesimulator12.0
 
-env:
-  global:
-  - PROJECT_NAME=JSONUtilities
-  matrix:
-  - PLATFORM=Mac
-  - PLATFORM=iOS NAME='iPhone 6s'
-  - PLATFORM=tvOS NAME='Apple TV 1080p'
-  - PLATFORM=watchOS
-  - PLATFORM=SPM
+branches:
+  only:
+  - feature/travis-ci-swift4.2
 
-before_install:
-  - if [ -n "$NAME" ]; then
-      export UUID=$(instruments -s | ruby -e "ARGF.each_line{ |ln| ln =~ /$NAME .* \[(.*)\]/; if \$1; puts(\$1); exit; end }");
-    fi
+xcode_project: JSONUtilities.xcodeproj
+xcode_scheme: JSONUtilities
+xcode_destination: platform=iOS Simulator,OS=12.0,name=iPhone X
 
-script:
-  - set -o pipefail;
-    case $PLATFORM in
-    Mac)
-      xcodebuild -scheme $PROJECT_NAME -enableCodeCoverage YES test | xcpretty;;
-    iOS|tvOS)
-      open -a "simulator" --args -CurrentDeviceUDID "$UUID" && xcodebuild -scheme $PROJECT_NAME -destination "id=$UUID" -enableCodeCoverage YES test | xcpretty;;
-    watchOS)
-      xcodebuild -scheme $PROJECT_NAME -destination "name=Apple Watch - 38mm" | xcpretty;;
-    SPM)
-      swift build && swift test;;
-    esac
-
-after_success:
-  - sleep 5
-  - bash <(curl -s https://codecov.io/bash)
