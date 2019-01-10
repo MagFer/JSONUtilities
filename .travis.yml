@@ -23,6 +23,8 @@ script:
     case $PLATFORM in
     Mac)
       xcodebuild -scheme $PROJECT_NAME -enableCodeCoverage YES test | xcpretty;;
+    iOS)
+      xcodebuild -project JSONUtilities.xcodeproj -scheme $PROJECT_NAME -destination "platform=iOS Simulator,OS=12.0,name=iPhone X" build-for-testing test | xcpretty
     watchOS)
       xcodebuild -scheme $PROJECT_NAME -destination "name=Apple Watch - 38mm" | xcpretty;;
     SPM)
