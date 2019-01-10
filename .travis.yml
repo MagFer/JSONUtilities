@@ -19,6 +19,6 @@ env:
 
 script: 
 # xcode_destination: $DESTINATION
-  - set -o pipefail && xcodebuild -project JSONUtilities.xcodeproj -scheme $PROJECT_NAME -destination "platform=iOS Simulator,OS=12.0,name=iPhone X" build-for-testing test | xcpretty
+  - set -o pipefail && xcodebuild -project JSONUtilities.xcodeproj -scheme $SCHEME -destination "platform=iOS Simulator,OS=12.0,name=iPhone X" build-for-testing test | xcpretty
 
 
