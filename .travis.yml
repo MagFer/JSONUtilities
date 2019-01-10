@@ -10,12 +10,12 @@ xcode_project: JSONUtilities.xcodeproj
 xcode_scheme: JSONUtilities
 
 env:
-- PLATFORM=iOS-iPhoneX DESTINATION=platform=iOS Simulator,OS=12.0,name=iPhone X
-- PLATFORM=iOS-iPhone8 DESTINATION=platform=iOS Simulator,OS=12.0,name=iPhone 8
+- PLATFORM=iOS-iPhoneX SCHEME="JSONUtilities" DESTINATION=platform=iOS Simulator,OS=12.0,name=iPhone X
+- PLATFORM=iOS-iPhone8 SCHEME="JSONUtilities" DESTINATION=platform=iOS Simulator,OS=12.0,name=iPhone 8
 
 
 script: 
 # xcode_destination: $DESTINATION
-  - set -o pipefail && xcodebuild -project JSONUtilities.xcodeproj.xcodeproj -scheme $SCHEME -destination "$DESTINATION" build-for-testing test | xcpretty
+  - set -o pipefail && xcodebuild -project JSONUtilities.xcodeproj -scheme JSONUtilities -destination "platform=iOS Simulator,OS=12.0,name=iPhone X" build-for-testing test | xcpretty
 
 
