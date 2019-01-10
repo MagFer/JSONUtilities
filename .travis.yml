@@ -25,6 +25,8 @@ script:
       xcodebuild -scheme $PROJECT_NAME -enableCodeCoverage YES test | xcpretty;;
     iOS)
       xcodebuild -scheme $PROJECT_NAME -destination "name=iPhone X" | xcpretty;;
+    tvOS)
+      xcodebuild -scheme $PROJECT_NAME -destination "name=Apple TV" | xcpretty;;
     watchOS)
       xcodebuild -scheme $PROJECT_NAME -destination "name=Apple Watch - 38mm" | xcpretty;;
     SPM)
