@@ -40,7 +40,8 @@ env:
 
 before_install:
   - if [ -n "$NAME" ]; then
-      export DEVICENAME = 'iPhone X';
+      export DEVICENAME =$('iPhone X');
+      #export UUID=$(instruments -s | ruby -e "ARGF.each_line{ |ln| ln =~ /$NAME .* \[(.*)\]/; if \$1; puts(\$1); exit; end }");
     fi
 
 script:
