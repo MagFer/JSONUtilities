@@ -40,7 +40,7 @@ env:
 
 before_install:
   - if [ -n "$NAME" ]; then
-      export DEVICENAME = 'iPhone X'
+      export DEVICENAME = 'iPhone X';
     fi
 
 script:
